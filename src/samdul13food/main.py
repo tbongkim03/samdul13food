@@ -60,7 +60,7 @@ def food(name: str):
             passwd = '1234',
             db = 'fooddb',
             charset = 'utf8',
-            port = int(os.getenv("MY_PORT", "33306"))
+            port = int(os.getenv("DB_PORT", "33306"))
     )
     
     cursor = db.cursor(pymysql.cursors.DictCursor)
