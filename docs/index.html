@@ -19,7 +19,7 @@
 
             const foodName = document.getElementById("foodName").value;
             //const url = `http://ec2-43-203-204-195.ap-northeast-2.compute.amazonaws.com/n13/food?name=${encodeURIComponent(foodName)}`;
-            const url = `http://127.0.0.1:8765/n13/food?name=${encodeURIComponent(foodName)}`;
+            const url = `http://127.0.0.1/n13/food?name=${encodeURIComponent(foodName)}`;
 
             fetch(url, {
                 method: 'GET',
