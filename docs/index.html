@@ -1,33 +1,186 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>삼둘푸드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            /* 둥근 폰트로 변경할 경우 Google Fonts에서 선택 가능 */
+        }
+
+        body {
+            background-color: #f0f0f0;
+            /* 흰색과 회색 중간 색상 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #555;
+            /* 더 연한 다크 그레이 색상 */
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* 둥근 폰트 */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* 폼 배경을 조금 더 흰색으로 조정 */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* 그림자 색상 조정 */
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        label {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #ff4e50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e24344;
+        }
+
+        input[type="text"]:focus,
+        button:focus {
+            outline: none;
+        }
+
+        h1::before {
+            content: "🍕🍣";
+            margin-right: 10px;
+        }
+
+        h1::after {
+            content: "🍜🍤";
+            margin-left: 10px;
+        }
+
+        form {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 모바일 화면용 반응형 스타일 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            form {
+                width: 80%;
+                padding: 20px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            form {
+                width: 80%;
+                padding: 15px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                font-size: 0.8rem;
+            }
+
+            button {
+                width: 100%;
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>음식 이름 입력</h1>
+    <h1>음식 기록</h1>
     <form id="foodForm">
-        <label for="foodName">음식 이름: </label>
-        <input type="text" id="foodName" name="foodName" required>
-        <button type="submit">저장</button>
+        <label for="foodName">🍽 먹고싶은 메뉴 </label>
+        <input type="text" id="foodName" name="foodName" placeholder="입력" required>
+        <button type="submit">저 장 🍴</button>
     </form>
 
     <script>
-        document.getElementById("foodForm").addEventListener("submit", function(event) {
+        document.getElementById("foodForm").addEventListener("submit", function (event) {
             event.preventDefault(); // 폼 기본 제출 방지
 
             const foodName = document.getElementById("foodName").value;
-            //const url = `http://ec2-43-203-204-195.ap-northeast-2.compute.amazonaws.com/n13/food?name=${encodeURIComponent(foodName)}`;
             const url = `https://api.samdulshop.shop/n13/food?name=${encodeURIComponent(foodName)}`;
 
             fetch(url, {
-                method: 'GET',
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    method: 'GET',
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     </script>
 </body>
+
 </html>
